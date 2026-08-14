@@ -1,7 +1,11 @@
-use crate::tela::ler;
+use crate::tela::ler::*;
+use crate::tela::operationsbasics::*;
+use crate::models::cliente::Cliente;
+use crate::tela::servico_cliente::*;
 
-pub fn mostrar_menu() {
+pub fn mostrar_menu(clientes: &mut Vec<Cliente>) {
   loop {
+    limpar_tela();
     println!("\
         ================= Menu =================\n\
         Escolha uma das opções abaixo:\n\n\
@@ -12,12 +16,12 @@ pub fn mostrar_menu() {
         0 - Sair do programa\n\
     ");
 
-    let opcao: i32 = ler::ler_dados_int();
+    let opcao: usize = ler_dados_int();
     match opcao {
-      1 => println!("Opção 1"),
-      2 => println!("Opção 2"),
+      1 => incluir_cliente(clientes),
+      2 => alterar_clientes(clientes),
       3 => println!("Opção 3"),
-      4 => println!("Opção 4"),
+      4 => listar_clientes(clientes),
       0 => {
         println!("Saindo do programa...");
         return;
@@ -25,8 +29,7 @@ pub fn mostrar_menu() {
       _ => println!("Opção inválida"),
       }
 
-      println!("Digite enter para continuar...");
-      ler::ler_dados();
-    
+      //println!("Digite enter para continuar...");
+      //ler_dados();
   }
 }
