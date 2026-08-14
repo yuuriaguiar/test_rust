@@ -20,7 +20,7 @@ pub fn mostrar_menu(clientes: &mut Vec<Cliente>) {
     match opcao {
       1 => incluir_cliente(clientes),
       2 => alterar_clientes(clientes),
-      3 => println!("Opção 3"),
+      3 => excluir_clientes(clientes),
       4 => listar_clientes(clientes),
       0 => {
         println!("Saindo do programa...");

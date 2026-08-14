@@ -54,6 +54,33 @@ pub fn alterar_clientes(clientes: &mut Vec<Cliente>) {
   esperar(1);
 }
 
+pub fn excluir_clientes(clientes: &mut Vec<Cliente>) {
+  limpar_tela();  
+  if nao_tem_clientes(clientes) {
+    return;
+  }
+
+  let id = capitura_id();
+  if let Some(indice) = buscar_cliente_por_id(clientes, id) { 
+    println!("{}", "-".to_string().repeat(40));
+    println!("Confirmar exclusão do cliente abaixo?");
+    println!("{}", "-".to_string().repeat(40));
+    mostrar_cliente(&clientes[indice]);
+    println!("{}", "-".to_string().repeat(40));
+    println!("Digite 's' para confirmar ou 'n' para cancelar");
+    let opcao = ler_dados();
+    if opcao == "s" {
+      clientes.remove(indice);
+      limpar_tela();
+      println!("Cliente excluído com sucesso!");
+      esperar(1);
+    } else {
+      limpar_tela();
+      println!("Exclusão cancelada!");
+    }
+}
+}
+
 fn buscar_cliente_por_id(clientes: &[Cliente], id: usize) -> Option<usize> {
     clientes.iter().position(|cliente| cliente.id == id)
 }
